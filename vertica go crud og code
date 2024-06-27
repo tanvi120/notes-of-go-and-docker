@@ -1,0 +1,144 @@
+package main
+
+import (
+	"bytes"
+	"encoding/json"
+	"net/http"
+	"net/http/httptest"
+	"testing"
+)
+
+func TestCreateClient(t *testing.T) {
+	client := Client{
+		CID:          1,
+		PayloadParam: "param1",
+		EventID:      101,
+	}
+
+	clientJSON, err := json.Marshal(client)
+	if err != nil {
+		t.Fatalf("Error marshaling client: %v", err)
+	}
+
+	req, err := http.NewRequest("POST", "/clients", bytes.NewBuffer(clientJSON))
+	if err != nil {
+		t.Fatalf("Error creating request: %v", err)
+	}
+
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(handleClients)
+
+	handler.ServeHTTP(rr, req)
+
+	if status := rr.Code; status != http.StatusCreated {
+		t.Errorf("Handler returned wrong status code: got %v, want %v", status, http.StatusCreated)
+	}
+
+	expected := "Client created successfully"
+	if rr.Body.String() != expected {
+		t.Errorf("Handler returned unexpected body: got %v, want %v", rr.Body.String(), expected)
+	}
+}
+
+func TestUpdateClient(t *testing.T) {
+	client := Client{
+		CID:          1,
+		PayloadParam: "updated_param",
+		EventID:      102,
+	}
+
+	clientJSON, err := json.Marshal(client)
+	if err != nil {
+		t.Fatalf("Error marshaling client: %v", err)
+	}
+
+	req, err := http.NewRequest("PUT", "/clients/1", bytes.NewBuffer(clientJSON))
+	if err != nil {
+		t.Fatalf("Error creating request: %v", err)
+	}
+
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(handleClients)
+
+	handler.ServeHTTP(rr, req)
+
+	if status := rr.Code; status != http.StatusOK {
+		t.Errorf("Handler returned wrong status code: got %v, want %v", status, http.StatusOK)
+	}
+
+	expected := "Client updated successfully"
+	if rr.Body.String() != expected {
+		t.Errorf("Handler returned unexpected body: got %v, want %v", rr.Body.String(), expected)
+	}
+}
+
+func TestDeleteClient(t *testing.T) {
+	req, err := http.NewRequest("DELETE", "/clients/1", nil)
+	if err != nil {
+		t.Fatalf("Error creating request: %v", err)
+	}
+
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(handleClients)
+
+	handler.ServeHTTP(rr, req)
+
+	if status := rr.Code; status != http.StatusOK {
+		t.Errorf("Handler returned wrong status code: got %v, want %v", status, http.StatusOK)
+	}
+
+	expected := "Client deleted successfully"
+	if rr.Body.String() != expected {
+		t.Errorf("Handler returned unexpected body: got %v, want %v", rr.Body.String(), expected)
+	}
+}
+
+func TestGetClients(t *testing.T) {
+	req, err := http.NewRequest("GET", "/clients", nil)
+	if err != nil {
+		t.Fatalf("Error creating request: %v", err)
+	}
+
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(handleClients)
+
+	handler.ServeHTTP(rr, req)
+
+	if status := rr.Code; status != http.StatusOK {
+		t.Errorf("Handler returned wrong status code: got %v, want %v", status, http.StatusOK)
+	}
+
+	// TODO: Add assertions to validate the response body
+}
+
+func TestGetClient(t *testing.T) {
+	req, err := http.NewRequest("GET", "/clients/1", nil)
+	if err != nil {
+		t.Fatalf("Error creating request: %v", err)
+	}
+
+	rr := httptest.NewRecorder()
+	handler := http.HandlerFunc(handleClients)
+
+	handler.ServeHTTP(rr, req)
+
+	if status := rr.Code; status != http.StatusOK {
+		t.Errorf("Handler returned wrong status code: got %v, want %v", status, http.StatusOK)
+	}
+
+	// TODO: Add assertions to validate the response body
+}
+
+
+
+
+
+sqp_a4cdbca2e3feaffdcce962fa0d5f74071a65b7df
+
+
+
+sonar-scanner \
+  -Dsonar.projectKey=crud \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.token=sqp_a4cdbca2e3feaffdcce962fa0d5f74071a65b7df

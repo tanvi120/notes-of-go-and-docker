@@ -1,0 +1,38 @@
+sqp_44ac965351dcc57a0530296a1cba550d37e7e0e8
+
+sonar-scanner \
+  -Dsonar.projectKey=first \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.token=sqp_44ac965351dcc57a0530296a1cba550d37e7e0e8
+  
+  
+  /home/tanvinevagi/sonar-scanner-6.0.0.4432-linux/bin/sonar-scanner \
+  -Dsonar.projectKey=first \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.token=sqp_44ac965351dcc57a0530296a1cba550d37e7e0e8
+
+
+
+sonar-scanner \
+  -Dsonar.projectKey=crud \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.token=sqp_abdc1376f831c8641661f0436599b16c2af8f693 \
+  -Dsonar.go.coverage.reportPaths=coverage.out
+  
+  
+  
+  
+  
+  
+  
+  sqp_a30a47e4177a4fcceea4f88000c0429e937cb906
+  
+  sonar-scanner \
+  -Dsonar.projectKey=verticacrud \
+  -Dsonar.sources=. \
+  -Dsonar.host.url=http://localhost:9001 \
+  -Dsonar.token=sqp_a30a47e4177a4fcceea4f88000c0429e937cb906 \
+  -Dsonar.go.coverage.reportPaths=coverage.out

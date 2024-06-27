@@ -1,0 +1,649 @@
+in go there is a package main which are executable files and if there is package abc then they are helper files which have dependencies...
+in go there are data types like int, string"", float 64, bool, rune''
+in go when we declare func other than main we have to specify its data type 
+for eg: func tester string(){
+	return "abc"
+	}
+there are two types of array (same data types)-> fixed length and slice -> array which grow or shrink
+
+func main() {
+	cards := []string{newcard(), "abc"}
+	cards = append(cards, "ehhe")
+	fmt.Println(cards)
+
+	for i, card := range cards {
+		fmt.Println(i, card)
+	}
+}
+func newcard() string {
+	return "diamonds"
+}
+
+
+package main
+
+func main() {
+	cards := deck{newcard(), "abc"}
+	cards = append(cards, "ehhe")
+
+	cards.print()
+}
+func newcard() string {
+	return "diamonds"
+}
+package main
+
+import "fmt"
+
+// create a new type of deck which is a slice of strings
+type deck []string
+  //d deck is the receiver
+func (d deck) print() {
+	for i, card := range d {
+		fmt.Println(i, card)
+	}
+}
+
+
+//there are slices in go which is used to take the subset from the given array(slice)
+fruits[0:2] or [:2]  o to 1 not include 2
+fruits [:] seect whole array
+
+
+type conversion
+[]byte("hey there")
+converting from string to byte datatype
+
+
+
+
+
+
+
+
+
+
+
+tanvinevagi@NL1543:~$ ssh root@192.168.50.179
+The authenticity of host '192.168.50.179 (192.168.50.179)' can't be established.
+ED25519 key fingerprint is SHA256:icpP7SM20wRBTnhwOETVNoyf7QUhEsCIPMCYFKlQmBQ.
+This key is not known by any other names
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '192.168.50.179' (ED25519) to the list of known hosts.
+root@192.168.50.179's password: 
+Permission denied, please try again.
+root@192.168.50.179's password: 
+Permission denied, please try again.
+root@192.168.50.179's password: 
+Last failed login: Mon Jun 17 11:16:07 IST 2024 from 192.168.112.246 on ssh:notty
+There was 1 failed login attempt since the last successful login.
+Last login: Sun Jun 16 13:12:09 2024 from calendar.netcore.co.in
+[root@NDL50179 ~]# /opt/vertica/bin/vsql -U dbadmin -d smartech --password='db@min'
+Welcome to vsql, the Vertica Analytic Database interactive terminal.
+
+Type:  \h or \? for help with vsql commands
+       \g or terminate with semicolon to execute query
+       \q to quit
+
+smartech=> \q
+[root@NDL50179 ~]# /opt/vertica/bin/vsql -U dbadmin -d smartech --password='db@min'
+Welcome to vsql, the Vertica Analytic Database interactive terminal.
+
+Type:  \h or \? for help with vsql commands
+       \g or terminate with semicolon to execute query
+       \q to quit
+
+smartech=> select * from special_clients where cid=14340;
+  cid  | is_special | in_migration | is_onboarded |        created_time        |  client_name   |   timezone   | user_path_enabled |        updated_time        | encryption_enabled | event_container_enabled 
+-------+------------+--------------+--------------+----------------------------+----------------+--------------+-------------------+----------------------------+--------------------+-------------------------
+ 14340 | f          | f            | t            | 2020-01-16 23:09:06.126764 | prdev_email_jr | Asia/Kolkata | t                 | 2024-02-26 19:04:18.401503 | t                  | t
+(1 row)
+
+smartech=> select * from migration.ClientPayloadInfo ;
+  cid  | payload_param  | event_id 
+-------+----------------+----------
+ 15060 | vt_ipaddress   |       51
+ 18740 | vt_abcd_abcd   |      148
+ 18020 | vt_31param     |      184
+ 20670 | vt__hsl_vendor |      144
+ 15260 | vt_abc         |      180
+ 19927 | vt_aaaa        |      276
+ 23670 | vt_brand       |        2
+ 14340 | vt_brand       |        2
+(8 rows)
+
+smartech=> select * from client_activity_cache where cid=14340 limit 5;
+
+
+
+func main() {
+
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Enter text: ")
+	input, _ := reader.ReadString('\n')
+	fmt.Println("you entered:", input)
+}
+This line creates a new buffered reader (reader) that reads from the standard input (os.Stdin). The bufio.NewReader function returns a Reader object that provides buffering and some additional methods for reading from the input. 
+
+
+fmt.Print("enter a number: ")
+	numInput, _ := reader.ReadString('\n')
+	aFloat, err := strconv.ParseFloat(strings.TrimSpace(numInput), 64)
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println("value of number:", aFloat)
+	}
+
+
+
+
+// Write your answer here, and then test your code.
+// Your job is to implement the findLargest() method.
+
+package main
+
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
+
+// Change these boolean values to control whether you see
+// the expected answer and/or hints.
+const showExpectedResult = false
+const showHints = false
+
+// calculate() returns the sum of the two parameters
+func calculate(value1 string, value2 string) float64 {
+	// Your code goes here.
+
+	float1, err := strconv.ParseFloat(strings.TrimSpace(value1), 64)
+	if err != nil {
+		fmt.Println("err")
+		panic("value1 should be a number")
+	}
+
+	float2, err := strconv.ParseFloat(strings.TrimSpace(value2), 64)
+	if err != nil {
+		fmt.Println("err")
+		panic("value2 should be a number")
+	}
+
+	return float1 + float2
+}
+Use strings.TrimSpace() to remove any leading or trailing white spaces from value1 and value2.
+Use strconv.ParseFloat() to convert the trimmed strings to float64. This function also takes a second argument (64) indicating the precision of the floating-point number.
+Handle potential errors from strconv.ParseFloat() using an if-statement. If an error occurs during conversion, print "err" and use panic() to stop execution and indicate that the input should be a number.
+
+Allocation Functions:
+new and make are two built-in functions used for memory allocation in Go:
+new:
+Allocates memory but does not initialize the memory.
+Returns a pointer to the zeroed storage.
+Example: p := new(int) allocates memory for an int and returns a pointer to it.
+make:
+Only used for slices, maps, and channels.
+Allocates and initializes the memory for these types.
+Example: s := make([]int, 10) allocates and initializes a slice of integers with length 10.
+
+//pointers
+func main() {
+	anint := 42
+	var p = &anint
+	fmt.Println("value of p", *p)
+	value := 34.23
+	point1 := &value
+	*point1 = *point1 / 21
+	fmt.Println(*point1)
+	fmt.Println(value)
+}
+//arrays
+func main() {
+	var colors [3]string
+	colors[0] = "red"
+	colors[1] = "green"
+	colors[2] = "blue"
+	fmt.Println(colors[2])
+	var numbers = [5]int{1, 2, 3, 4, 5}
+	fmt.Println(numbers)
+	fmt.Println(len(numbers))
+}
+
+//slices
+
+func main() {
+	var colors = []string{"Red", "Green", "Blue"}
+	fmt.Println(colors)
+	colors = append(colors, "purple")
+	fmt.Println(colors)
+	colors = append(colors[1:len(colors)])  //deleting 1st
+	fmt.Println(colors)
+	colors = append(colors[:len(colors)-1])  //deleting last
+	fmt.Println(colors)
+}
+//making slice of numbers and then appending to it
+numbers := make([]int, 5, 5)
+	numbers[0] = 123
+	numbers[1] = 124
+	numbers[2] = 125
+	numbers[3] = 126
+	numbers[4] = 127
+
+	fmt.Println(numbers)
+	numbers = append(numbers, 235)
+	fmt.Println(numbers)
+
+//sorting the integers
+fmt.Println(numbers)
+	sort.Ints(numbers)
+	fmt.Println(numbers)
+
+
+//maps  (dictionary in python)
+unc main() {
+	states := make(map[string]string)
+	fmt.Println(states)
+	states["wa"] = "washington"
+	states["or"] = "oregon"
+	states["ca"] = "california"
+	fmt.Println(states)
+	californiay := states["ca"]
+	fmt.Println(californiay)
+	delete(states, "or")
+	fmt.Println(states)
+}
+
+
+for k, v := range states {
+		fmt.Printf("%v: %v\n", k, v)
+	}
+
+	// Create a slice of keys from the map
+	keys := make([]string, len(states))
+	i := 0
+	for k := range states {
+		keys[i] = k
+		i++
+	}
+	fmt.Println(keys) // Print the unsorted keys
+
+	sort.Strings(keys)
+	fmt.Println(keys) // Print the sorted keys
+	
+	for i := range keys {
+		fmt.Println(states[keys[i]])
+	} //printing values
+
+
+//if else
+
+unc main() {
+	theans := 0
+	var result string
+	if theans < 0 {
+		result = "less than zero"
+	} else if theans == 0 {
+		result = "equal to zero"
+	} else {
+		result = "greater than zero"
+	}
+	fmt.Println(result)
+	if x := -34; x < 0 {
+		result = "less than zero"
+	} else if x == 0 {
+		result = "equal to zero"
+	} else {
+		result = "greater than zero"
+	}
+	fmt.Println(result)
+}
+output:
+equal to zero
+less than zero
+
+
+switch case
+
+func main() {
+	rand.Seed(time.Now().Unix())
+
+	// fmt.Println("Day", dow)
+
+	var result string
+	switch dow := rand.Intn(7) + 1; dow {
+	case 1:
+		result = "its monday"
+		fallthrough
+	case 2:
+		result = "its sunday"
+		fallthrough
+	default:
+		result = "its someday"
+	}
+	fmt.Println(result)
+
+}
+
+
+//for loop diff ways
+
+unc main() {
+	colors := []string{"Red", "Green", "Blue"}
+	fmt.Println(colors)
+
+	for i := 0; i < len(colors); i++ {
+		fmt.Println(colors[i])
+	}
+
+	for i := range colors {
+		fmt.Println(colors[i])
+	}
+	for _, color := range colors {
+		fmt.Println(color)
+	}
+	value := 1
+	for value < 10 {
+		fmt.Println("value :", value)
+		value++
+	}
+	sum := 1
+	for sum < 1000 {
+		sum += sum
+		fmt.Println("sum is:", sum)
+		if sum > 200 {
+			goto theend
+		}
+	}
+theend:
+	fmt.Println("the end")
+
+}
+
+
+//op
+tanvinevagi@NL1543:~/Desktop/learning-go-2875237/practice$ go run main.go
+[Red Green Blue]
+Red
+Green
+Blue
+Red
+Green
+Blue
+Red
+Green
+Blue
+value : 1
+value : 2
+value : 3
+value : 4
+value : 5
+value : 6
+value : 7
+value : 8
+value : 9
+sum is: 2
+sum is: 4
+sum is: 8
+sum is: 16
+sum is: 32
+sum is: 64
+sum is: 128
+sum is: 256
+the end
+
+
+
+
+//calculate and return total value of shopping cart 
+
+
+package main
+
+// Change these boolean values to control whether you see 
+// the expected answer and/or hints.
+const showExpectedResult = false;
+const showHints = false;
+
+type cartItem struct{
+    name string
+    price float64
+    quantity int
+}
+
+// calculateTotal() returns the total value of the shopping cart.
+func calculateTotal(cart []cartItem) float64 {
+    var total float64=0
+    for _,item:= range(cart){
+        total+=item.price * float64(item.quantity)
+    }
+    return total
+}
+
+
+
+//functions in go
+
+
+func main() {
+	dosomething()
+	sum := addvalues(4, 7)
+	fmt.Println(sum)
+	multisum, multicount := addallvalues(3, 7, 1, 2)
+	fmt.Println(multisum)
+	fmt.Println(multicount)
+}
+
+func dosomething() {
+	fmt.Println("do something")
+}
+
+func addvalues(value1 int, value2 int) int {
+	return value1 + value2
+}
+
+func addallvalues(values ...int) (int, int) {
+	total := 0
+	for _, value := range values {
+		total += value
+	}
+	return total, len(values)
+}
+
+
+
+output
+
+do something
+11
+13
+4
+
+
+//functions 
+
+func main() {
+	poodle := Dog{"Poodle", 10, "wolf"}
+	fmt.Println(poodle)
+	fmt.Printf("%+v\n", poodle)
+	fmt.Printf("Breed: %v\nWeight: %v\n", poodle.Breed, poodle.Weight)
+	poodle.Speak()
+	poodle.sound = "hey"
+	poodle.Speak()
+	poodle.Speakthreetimes()
+}
+
+// Dog is a struct
+type Dog struct {
+	Breed  string
+	Weight int
+	sound  string
+}
+
+func (d Dog) Speak() {
+	fmt.Println(d.sound)
+}
+func (d Dog) Speakthreetimes() {
+	d.sound = fmt.Sprintf("%v %v %v ", d.sound, d.sound, d.sound)
+	fmt.Println(d.sound)
+}
+
+//output
+
+{Poodle 10 wolf}
+{Breed:Poodle Weight:10 sound:wolf}
+Breed: Poodle
+Weight: 10
+wolf
+hey
+hey hey hey 
+
+
+
+
+//reading files and creating it
+
+package main
+
+import (
+	"fmt"
+	"io"
+	"io/ioutil"
+	"os"
+)
+
+func main() {
+	content := "hey there tanvi"
+	file, err := os.Create("./fromstring.txt")
+	checkerr(err)
+	length, err := io.WriteString(file, content)
+	checkerr(err)
+	fmt.Printf("wrote in %v char", length)
+	defer file.Close()
+	defer readfile("./fromstring.txt")
+}
+func checkerr(err error) {
+	if err != nil {
+		panic(err)
+	}
+}
+func readfile(filename string) {
+	data, err := ioutil.ReadFile(filename)
+	checkerr(err)
+	fmt.Println("text read from file:", string(data))
+
+}
+
+//output
+
+file will be created and then the text will be there in it after read file the text appears in terminal 
+
+wrote in 15 chartext read from file: hey there tanvi
+
+
+
+
+//reading data from url
+
+package main
+
+import (
+	"fmt"
+	"io/ioutil"
+	"net/http"
+)
+
+const url = "http://services.explorecalifornia.org/json/tours.php"
+
+func main() {
+	resp, err := http.Get(url)
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("response is : %T\n", resp)
+	defer resp.Body.Close()
+	bytes, err := ioutil.ReadAll(resp.Body)
+	if err != nil {
+		panic(err)
+	}
+	content := string(bytes)
+	fmt.Print(content)
+}
+
+
+output:
+it will print whole url content 
+
+response is : *http.Response
+403 - Forbidden | Access to this page is forbidden.
+
+
+
+//indetail json file fetching
+
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+	"io/ioutil"
+	"net/http"
+	"strings"
+)
+
+const url = "http://services.explorecalifornia.org/json/tours.php"
+
+func main() {
+    resp, err := http.Get(url)  // Sends an HTTP GET request to the URL.
+    if err != nil {
+        panic(err)  // If there is an error, the program panics.
+    }
+    defer resp.Body.Close()  // Ensures the response body is closed after main completes.
+
+    fmt.Printf("Response type: %T\n", resp)  // Prints the type of the response.
+
+    bytes, err := ioutil.ReadAll(resp.Body)  // Reads the response body into a byte slice.
+    if err != nil {
+        panic(err)  // If there is an error, the program panics.
+    }
+
+    content := string(bytes)  // Converts the byte slice to a string.
+    tours, err := tourFromJSON(content)  // Parses the JSON content into a slice of Tour structs.
+    if err != nil {
+        panic(err)  // If there is an error, the program panics.
+    }
+    for _, tour := range tours {
+        fmt.Println(tour.Name)  // Prints the name of each tour.
+    }
+}
+
+
+func tourFromJSON(content string) ([]Tour, error) {
+    var tours []Tour  // Initializes a slice to hold the Tour structs.
+    decoder := json.NewDecoder(strings.NewReader(content))  // Creates a new JSON decoder.
+
+    _, err := decoder.Token()  // Skips the start of the JSON array.
+    if err != nil {
+        return nil, fmt.Errorf("error reading JSON token: %v", err)  // Returns an error if token reading fails.
+    }
+
+    for decoder.More() {  // Iterates through each element in the JSON array.
+        var tour Tour
+        err := decoder.Decode(&tour)  // Decodes the current element into a Tour struct.
+        if err != nil {
+            return nil, fmt.Errorf("error decoding JSON element: %v", err)  // Returns an error if decoding fails.
+        }
+        tours = append(tours, tour)  // Adds the decoded Tour struct to the slice.
+    }
+    return tours, nil  // Returns the slice of Tour structs and no error.
+}
+
+
+type Tour struct {
+	Name  string `json:"name"`
+	Price string `json:"price"`
+}
+
+
+
+
